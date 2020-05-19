@@ -3,7 +3,6 @@
 namespace AssetManager\Service;
 
 use AssetManager\Exception\InvalidArgumentException;
-use AssetManager\Resolver\ResolverInterface;
 use AssetManager\View\Helper\Asset;
 use Interop\Container\ContainerInterface;
 use Laminas\Cache\Storage\Adapter\AbstractAdapter as AbstractCacheAdapter;
@@ -51,7 +50,7 @@ class AssetViewHelperFactory implements FactoryInterface
         // exception in case cache is not an Adapter that extend the AbstractAdapter of Laminas\Cache\Storage
         if ($cache !== null && !($cache instanceof AbstractCacheAdapter)) {
             throw new InvalidArgumentException(
-                'Invalid cache provided, you must pass a Cache Adapter that extend 
+                'Invalid cache provided, you must pass a Cache Adapter that extend
                 Laminas\Cache\Storage\Adapter\AbstractAdapter'
             );
         }

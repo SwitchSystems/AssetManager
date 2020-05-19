@@ -4,9 +4,6 @@ namespace AssetManager\Service;
 
 use AssetManager\Resolver\MapResolver;
 use Interop\Container\ContainerInterface;
-use Interop\Container\Exception\ContainerException;
-use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
