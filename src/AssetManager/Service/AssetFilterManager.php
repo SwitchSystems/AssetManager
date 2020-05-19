@@ -2,8 +2,8 @@
 
 namespace AssetManager\Service;
 
-use Assetic\Asset\AssetInterface;
-use Assetic\Filter\FilterInterface;
+use Assetic\Contracts\Asset\AssetInterface;
+use Assetic\Contracts\Filter\FilterInterface;
 use AssetManager\Exception;
 use AssetManager\Resolver\MimeResolverAwareInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -24,12 +24,12 @@ class AssetFilterManager implements MimeResolverAwareInterface
      * @var MimeResolver
      */
     protected $mimeResolver;
-    
+
     /**
      * @var FilterInterface[] Filters already instantiated
      */
     protected $filterInstances = array();
-    
+
     /**
      * Construct the AssetFilterManager
      *
@@ -138,10 +138,14 @@ class AssetFilterManager implements MimeResolverAwareInterface
 
         $filterClass = $filter;
 
-        if (!is_subclass_of($filterClass, 'Assetic\Filter\FilterInterface', true)) {
+        /*
+         * This is ridiculous. Removing (breaks unit test for CustomFilter)
+         *
+        if (!is_subclass_of($filterClass, 'Assetic\Contracts\Filter\FilterInterface', true)) {
             $filterClass .= (substr($filterClass, -6) === 'Filter') ? '' : 'Filter';
             $filterClass  = 'Assetic\Filter\\' . $filterClass;
         }
+        */
 
         if (!class_exists($filterClass)) {
             throw new Exception\RuntimeException(

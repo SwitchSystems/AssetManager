@@ -1,9 +1,8 @@
 <?php
+use Assetic\Contracts\Asset\AssetInterface;
+use Assetic\Contracts\Filter\FilterInterface;
 
-
-use Assetic\Asset\AssetInterface;
-
-class ReverseFilter implements Assetic\Filter\FilterInterface
+class ReverseFilter implements FilterInterface
 {
     private static $executed;
     public function filterLoad(AssetInterface $asset)
