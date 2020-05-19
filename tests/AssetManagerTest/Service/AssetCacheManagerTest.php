@@ -4,7 +4,6 @@ namespace AssetManagerTest\Service;
 
 use Assetic\Asset\AssetCache;
 use Assetic\Asset\FileAsset;
-use Assetic\Cache\ApcCache;
 use Assetic\Contracts\Cache\CacheInterface;
 use Assetic\Cache\FilesystemCache;
 use AssetManager\Cache\FilePathCache;
@@ -28,7 +27,7 @@ class AssetCacheManagerTest extends TestCase
 
         $config = array(
             'my/path' => array(
-                'cache' => 'Apc',
+                'cache' => 'FilePath',
             ),
         );
 
@@ -53,7 +52,7 @@ class AssetCacheManagerTest extends TestCase
         $serviceManager = new ServiceManager();
         $config = array(
             'my/path' => array(
-                'cache' => 'Apc',
+                'cache' => 'FilePath',
             ),
         );
 
@@ -78,7 +77,7 @@ class AssetCacheManagerTest extends TestCase
 
         $config = array(
             'my/path' => array(
-                'cache' => 'Apc',
+                'cache' => 'FilePath',
             ),
         );
 
@@ -102,7 +101,7 @@ class AssetCacheManagerTest extends TestCase
         $serviceManager = new ServiceManager();
         $config = array(
             'default' => array(
-                'cache' => 'Apc',
+                'cache' => 'FilePath',
             ),
         );
 
@@ -214,9 +213,6 @@ class AssetCacheManagerTest extends TestCase
                 )
             ),
 
-            'my_bc_check.tmp' => array(
-                'cache' => 'Apc',
-            ),
         );
 
         $serviceManager->setFactory(
@@ -243,8 +239,6 @@ class AssetCacheManagerTest extends TestCase
         $provider = $reflectionMethod->invoke($assetManager, 'my_provided_class.tmp');
         $this->assertTrue($provider instanceof FilePathCache);
 
-        $provider = $reflectionMethod->invoke($assetManager, 'my_bc_check.tmp');
-        $this->assertTrue($provider instanceof ApcCache);
     }
 
     /**
@@ -322,24 +316,6 @@ class AssetCacheManagerTest extends TestCase
 
         $providerConfig = $reflectionMethod->invoke($assetManager, 'my_provided_class.tmp');
         $this->assertEquals($expected, $providerConfig);
-    }
-
-    /**
-     * @covers \AssetManager\Service\AssetCacheManager::classMapper
-     */
-    public function testClassMapperResolvesApcCache()
-    {
-        $serviceManager = new ServiceManager();
-
-        $assetManager = new AssetCacheManager($serviceManager, array());
-        $reflectionMethod = new \ReflectionMethod(
-            AssetCacheManager::class,
-            'classMapper'
-        );
-        $reflectionMethod->setAccessible(true);
-
-        $class = $reflectionMethod->invoke($assetManager, 'ApcCache');
-        $this->assertEquals(ApcCache::class, $class);
     }
 
     /**

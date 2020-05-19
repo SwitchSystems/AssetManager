@@ -18,7 +18,7 @@ class AssetCacheManagerServiceFactoryTest extends TestCase
                 'asset_manager' => array(
                     'caching' => array(
                         'default' => array(
-                            'cache' => 'Apc',
+                            'cache' => 'Array',
                         ),
                     ),
                 ),
