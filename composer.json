@@ -21,6 +21,12 @@
             "homepage": "http://ocramius.github.com/"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/SwitchSystems/assetic"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "laminas/laminas-modulemanager": "^2.7.2",
@@ -29,8 +35,8 @@
         "laminas/laminas-loader": "^2.5.1",
         "laminas/laminas-eventmanager": "^2.6.3 || ^3.0.1",
         "laminas/laminas-mvc": "^2.7.9 || ^3.0.2",
-        "assetic-php/assetic": "^2.0",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "^1.0",
+        "assetic/framework": "2.0.x-dev"
     },
     "require-dev": {
         "laminas/laminas-http": "^2.5.4",
